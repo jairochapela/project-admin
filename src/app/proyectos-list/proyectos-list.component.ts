@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-proyectos-list',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./proyectos-list.component.css']
 })
 export class ProyectosListComponent implements OnInit {
+  proyectos = [];
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+    this.http.get<any[]>("http://localhost:3000/api/proyectos")
+    .subscribe(proyectos => {
+      this.proyectos = proyectos;
+    })
   }
 
 }

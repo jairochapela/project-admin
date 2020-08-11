@@ -2,20 +2,20 @@
     <table class="table">
         <thead>
             <tr>
-                <th class="col">ID</th>
-                <th class="col">Nombre</th>
-                <th class="col">Descripción</th>
-                <th class="col">Fecha inicio</th>
-                <th class="col">Fecha fin</th>
+                <th scope="col">ID</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Fecha inicio</th>
+                <th scope="col">Fecha fin</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
+            <tr *ngFor="let proyecto of proyectos">
+                <td>{{proyecto.id}}</td>
+                <td>{{proyecto.nombre}}</td>
+                <td>{{proyecto.descripcion}}</td>
+                <td>{{proyecto.fechaInicio}}</td>
+                <td>{{proyecto.fechaEntrega}}</td>
             </tr>
         </tbody>
     </table>
