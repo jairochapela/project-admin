@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-proyecto-detail',
@@ -17,9 +18,22 @@ export class ProyectoDetailComponent implements OnInit {
     fechaFin: null
   })
 
-  constructor(private fb: FormBuilder, private http: HttpClient) { }
+  constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      if (params.id !== '_nuevo') {
+        this.http.get<any>(environment.apiBaseUrl + "proyectos/" + params.id)
+        .subscribe(
+          proyecto => {
+            this.proyectoForm.patchValue(proyecto)
+          },
+          error => {
+            alert("Error cargando el proyecto")
+          }
+        )
+      }
+    })
   }
 
   crear() {

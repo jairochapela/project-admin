@@ -12,7 +12,7 @@
         <tbody>
             <tr *ngFor="let proyecto of proyectos">
                 <td>{{proyecto.id}}</td>
-                <td>{{proyecto.nombre}}</td>
+                <td><a [routerLink]="proyecto.id">{{proyecto.nombre}}</a></td>
                 <td>{{proyecto.descripcion}}</td>
                 <td>{{proyecto.fechaInicio | date:'dd/MM/yyyy'}}</td>
                 <td>{{proyecto.fechaEntrega | date:'dd/MM/yyyy'}}</td>
