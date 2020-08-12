@@ -20,14 +20,13 @@ export class ProyectoDetailComponent implements OnInit {
   constructor(private fb: FormBuilder, private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.proyectoForm.valueChanges.subscribe(x => console.log(x))
   }
 
   crear() {
-    this.http.post(environment.apiBaseUrl + "proyectos", this.proyectoForm.value)
+    this.http.post<any>(environment.apiBaseUrl + "proyectos", this.proyectoForm.value)
       .subscribe(
         proyecto => {
-          alert("Proyecto creado con éxito")
+          alert("Proyecto creado con éxito con id=" + proyecto.id)
         },
         error => {
           alert("Error creando el proyecto: " + error.message)
