@@ -22,16 +22,16 @@ export class ProyectoDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      if (params.id !== '_nuevo') {
-        this.http.get<any>(environment.apiBaseUrl + "proyectos/" + params.id)
-        .subscribe(
-          proyecto => {
-            this.proyectoForm.patchValue(proyecto)
-          },
-          error => {
-            alert("Error cargando el proyecto")
-          }
-        )
+      if (params.id !== "_nuevo") {
+        this.http.get(environment.apiBaseUrl + "proyectos/" + params.id)
+          .subscribe(
+            proyecto => {
+              this.proyectoForm.patchValue(proyecto);
+            },
+            error => {
+              alert("No se pudo cargar el proyecto");
+            }
+          )
       }
     })
   }
