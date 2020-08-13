@@ -64,4 +64,18 @@ export class ProyectoDetailComponent implements OnInit {
       }
     )
   }
+
+  eliminar() {
+    if (confirm("¿Está seguro?")) {
+      this.http.delete<any>(environment.apiBaseUrl + "proyectos/" + this.id)
+      .subscribe(
+        () => {
+          alert("Proyecto eliminado con éxito.");
+        },
+        error => {
+          alert("Error eliminando el proyecto: " + error.message);
+        }
+      )
+    }
+  }
 }
