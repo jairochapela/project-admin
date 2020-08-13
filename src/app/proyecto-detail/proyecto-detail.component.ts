@@ -20,6 +20,7 @@ export class ProyectoDetailComponent implements OnInit {
 
   id = undefined;
 
+
   constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -51,6 +52,16 @@ export class ProyectoDetailComponent implements OnInit {
   }
 
   modificar() {
-    //TODO: llamar a la API con PUT
+    this.http.put<any>(
+      environment.apiBaseUrl + "proyectos/" + this.id, 
+      this.proyectoForm.value)
+    .subscribe(
+      proyecto => {
+        alert("Proyecto actualizado");
+      },
+      error => {
+        alert("Error actualizando proyecto: " + error.message);
+      }
+    )
   }
 }
