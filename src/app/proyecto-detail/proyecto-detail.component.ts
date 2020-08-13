@@ -18,15 +18,18 @@ export class ProyectoDetailComponent implements OnInit {
     fechaFin: null
   })
 
+  id = undefined;
+
   constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       if (params.id !== "_nuevo") {
-        this.http.get(environment.apiBaseUrl + "proyectos/" + params.id)
+        this.http.get<any>(environment.apiBaseUrl + "proyectos/" + params.id)
           .subscribe(
             proyecto => {
               this.proyectoForm.patchValue(proyecto);
+              this.id = proyecto.id;
             },
             error => {
               alert("No se pudo cargar el proyecto");
@@ -45,5 +48,9 @@ export class ProyectoDetailComponent implements OnInit {
         error => {
           alert("Error creando el proyecto: " + error.message)
         })
+  }
+
+  modificar() {
+    //TODO: llamar a la API con PUT
   }
 }
