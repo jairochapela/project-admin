@@ -14,7 +14,7 @@
         </div>
         <div class="form-group">
             <label for="fechaFin">Fecha de finalización</label>
-            <input type="date" name="fechaFin" id="fechaFin" class="form-control" formControlName="fechaFin">
+            <input type="date" name="fechaEntrega" id="fechaEntrega" class="form-control" formControlName="fechaEntrega">
         </div>
         <button *ngIf="!id" class="btn btn-primary" (click)="crear()">Crear proyecto</button>
         <button *ngIf="id" class="btn btn-primary" (click)="modificar()">Modificar proyecto</button>
