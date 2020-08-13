@@ -5,6 +5,12 @@
             <input type="text" id="nombre" class="form-control" name="nombre" formControlName="nombre">
         </div>
         <div class="form-group">
+            <label for="proyectoId">Proyecto</label>
+            <select name="proyectoId" id="proyectoId" class="form-control" formControlName="proyectoId">
+                <option *ngFor="let proyecto of proyectos" [value]="proyecto.id">{{proyecto.nombre}}</option>
+            </select>
+        </div>
+        <div class="form-group">
             <label for="fechaInicio">Fecha de inicio</label>
             <input type="date" name="fechaInicio" id="fechaInicio" class="form-control" formControlName="fechaInicio">
         </div>

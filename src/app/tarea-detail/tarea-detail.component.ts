@@ -13,12 +13,14 @@ export class TareaDetailComponent implements OnInit {
 
   tareaForm = this.fb.group({
     nombre: [null, Validators.required],
+    proyectoId: null,
     fechaInicio: [null, Validators.required],
     fechaFin: null,
     fechaVencimiento: null,
   })
 
   id = undefined;
+  proyectos = [];
 
   constructor(private fb: FormBuilder, private http: HttpClient, private route: ActivatedRoute, private router: Router) { }
 
@@ -37,6 +39,14 @@ export class TareaDetailComponent implements OnInit {
           )
       }
     })
+
+    // Obtención de los proyectos de la API para el selector de proyecto
+    this.http.get<any[]>(environment.apiBaseUrl + "proyectos")
+    .subscribe(
+      proyectos => {
+        this.proyectos = proyectos;
+      }
+    )
   }
 
   crear() {
